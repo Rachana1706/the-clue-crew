@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Counseling Session</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 12px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .doctor-info {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Request a Counseling Session</h1>
+    
+    <div class="container">
+        <form id="counselingForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="disorder">Select Your Disorder:</label>
+            <select id="disorder" name="disorder" required>
+                <option value="">Select your mental disorder</option>
+                <option value="anxiety">Anxiety Disorder</option>
+                <option value="depression">Depression</option>
+                <option value="ocd">Obsessive-Compulsive Disorder (OCD)</option>
+                <option value="bipolar">Bipolar Disorder</option>
+                <option value="ptsd">Post-Traumatic Stress Disorder (PTSD)</option>
+                <option value="eating">Eating Disorders</option>
+                <option value="love">love breakup</option>
+            </select>
+
+            <label for="preferred-date">Preferred Date and Time:</label>
+            <input type="datetime-local" id="preferred-date" name="preferred_date" required>
+
+            <label for="message">Additional Message (optional):</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+
+            <input type="submit" value="Request Session">
+        </form>
+
+        <div id="doctorInfo" class="doctor-info" style="display: none;">
+            <p>Based on your responses, we recommend you see the following specialist:</p>
+            <p id="doctorName"></p>
+            <p id="doctorDetails"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('counselingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the selected disorder
+            const disorder = document.getElementById('disorder').value;
+            let doctorName = "";
+            let doctorDetails = "";
+
+            // Determine the doctor based on the disorder
+            if (disorder === "anxiety") {
+                doctorName = "Dr. Sarah Williams (Anxiety Specialist)";
+                doctorDetails = "Dr. Williams has 10 years of experience specializing in treating anxiety disorders. She uses cognitive-behavioral therapy (CBT) and mindfulness-based techniques.";
+            } else if (disorder === "depression") {
+                doctorName = "Dr. John Doe (Depression Specialist)";
+                doctorDetails = "Dr. Doe has a background in treating major depressive disorders, offering therapy and medication management.";
+            } else if (disorder === "ocd") {
+                doctorName = "Dr. Emily Green (OCD Specialist)";
+                doctorDetails = "Dr. Green specializes in obsessive-compulsive disorder and is skilled in exposure and response prevention (ERP) therapy.";
+            } else if (disorder === "bipolar") {
+                doctorName = "Dr. Mark Lee (Bipolar Disorder Specialist)";
+                doctorDetails = "Dr. Lee is a psychiatrist with a focus on treating bipolar disorder using a combination of therapy and medication.";
+            } else if (disorder === "ptsd") {
+                doctorName = "Dr. Linda Carter (PTSD Specialist)";
+                doctorDetails = "Dr. Carter specializes in post-traumatic stress disorder and uses trauma-focused cognitive therapy (TF-CBT).";
+            } else if (disorder === "eating") {
+                doctorName = "Dr. Amy Martinez (Eating Disorder Specialist)";
+                doctorDetails = "Dr. Martinez is an expert in treating eating disorders like anorexia and bulimia using a holistic approach.";
+            }else if(disorder=="love"){
+                doctorName = "Dr. yashpal shetty (love breakup)";
+                doctorDetails = "Dr.yashpal is an expert in treating love breakup .";
+            }
+
+            else {
+                doctorName = "No specialist selected";
+                doctorDetails = "Please choose a mental disorder from the dropdown to receive a recommendation.";
+            }
+
+            // Show the doctor information
+            document.getElementById('doctorName').textContent = doctorName;
+            document.getElementById('doctorDetails').textContent = doctorDetails;
+            document.getElementById('doctorInfo').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>

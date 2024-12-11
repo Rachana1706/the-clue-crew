@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Mental Health Support</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Include the header -->
+    <header>
+        <div class="logo">
+            <h1><a href="index.html">Mental Health Support</a></h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="counseling.html">Counseling</a></li>
+                <li><a href="group-therapy.html">Group Therapy</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html" id="login-btn">Login/Signup</a></li>
+            </ul>
+        </nav>
+        <div class="notification-icon" id="notification-btn">
+            <span class="icon">🔔</span>
+            <div class="notification-dropdown" id="notification-dropdown">
+                <p>No new notifications.</p>
+            </div>
+        </div>
+    </header>
+
+   
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Profile</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+                padding: 20px;
+            }
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-container {
+                margin-bottom: 30px;
+            }
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 8px;
+            }
+            input[type="text"], input[type="email"], input[type="date"], textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            input[type="submit"], button {
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                border: none;
+                padding: 12px;
+                width: 100%;
+                margin-top: 10px;
+            }
+            input[type="submit"]:hover, button:hover {
+                background-color: #45a049;
+            }
+            .confirmation {
+                margin-top: 20px;
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                color: #4CAF50;
+            }
+            .session-history, .preferences {
+                margin-top: 20px;
+            }
+            .session-history ul, .preferences ul {
+                list-style-type: none;
+                padding-left: 0;
+            }
+            .session-history li, .preferences li {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <h1>Your Profile</h1>
+    
+        <div class="container">
+            <!-- Profile Management Form -->
+            <div class="form-container">
+                <h3>Manage Your Account</h3>
+                <form id="profileForm">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+    
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+    
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob">
+    
+                    <label for="bio">Short Bio:</label>
+                    <textarea id="bio" name="bio" rows="4"></textarea>
+    
+                    <input type="submit" value="Save Changes">
+                </form>
+            </div>
+    
+            <!-- Session History -->
+            <div class="session-history">
+                <h3>Your Past Sessions</h3>
+                <ul id="sessionList">
+                    <!-- Session details will be dynamically added here -->
+                </ul>
+            </div>
+    
+            <!-- Preferences -->
+            <div class="preferences">
+                <h3>Your Preferences</h3>
+                <ul>
+                    <li>
+                        <label>Receive Notifications:</label>
+                        <button id="toggleNotifications">Enable</button>
+                    </li>
+                    <li>
+                        <label>Preferred Therapy Mode:</label>
+                        <button id="changeTherapyMode">Group Therapy</button>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Confirmation message -->
+            <div id="confirmationMessage" class="confirmation" style="display: none;">
+                Your profile has been updated successfully.
+            </div>
+        </div>
+    
+        <script>
+            // JavaScript for form submission and dynamic data handling
+            document.getElementById('profileForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+    
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const dob = document.getElementById('dob').value;
+                const bio = document.getElementById('bio').value;
+    
+                // Save the profile information (could be sent to a server in a real application)
+                localStorage.setItem('name', name);
+                localStorage.setItem('email', email);
+                localStorage.setItem('dob', dob);
+                localStorage.setItem('bio', bio);
+    
+                // Display confirmation message
+                document.getElementById('confirmationMessage').style.display = 'block';
+    
+                // Optionally, log the values for debugging
+                console.log('Profile updated:', { name, email, dob, bio });
+            });
+    
+            // Session history (hardcoded data in this example)
+            const sessions = [
+                { date: '2024-12-01', topic: 'Coping with Anxiety' },
+                { date: '2024-11-15', topic: 'Managing Stress' },
+                { date: '2024-10-20', topic: 'Overcoming Grief' },
+            ];
+    
+            const sessionList = document.getElementById('sessionList');
+            sessions.forEach(session => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${session.date}: ${session.topic}`;
+                sessionList.appendChild(listItem);
+            });
+    
+            // Toggle notifications
+            const toggleNotificationsButton = document.getElementById('toggleNotifications');
+            let notificationsEnabled = false;
+            toggleNotificationsButton.addEventListener('click', () => {
+                notificationsEnabled = !notificationsEnabled;
+                toggleNotificationsButton.textContent = notificationsEnabled ? 'Disable' : 'Enable';
+            });
+    
+            // Change therapy mode (Group vs. Individual)
+            const changeTherapyModeButton = document.getElementById('changeTherapyMode');
+            let therapyMode = 'Group Therapy';
+            changeTherapyModeButton.addEventListener('click', () => {
+                therapyMode = therapyMode === 'Group Therapy' ? 'Individual Therapy' : 'Group Therapy';
+                changeTherapyModeButton.textContent = therapyMode;
+            });
+        </script>
+    
+    </body>
+
+    <!-- Include the footer -->
+    <footer>
+        <p>&copy; 2024 Mental Health Support Platform. All rights reserved.</p>
+        <div>
+            <a href="https://www.termsfeed.com/live/58942fbe-b5f4-4db4-9cde-3ffd03c6b93e">Privacy Policy</a> | <a href="http://www.mentalhealthsupport.com">Terms of Service</a> | <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <script src="js.js"></script>
+</body>
+</html>

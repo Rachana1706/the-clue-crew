@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealing with Grief - Therapy Session</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .video-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border: none;
+        }
+        .form-container {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 12px;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .confirmation {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dealing with Grief - Therapy Session</h1>
+
+    <div class="container">
+        <div class="video-container">
+            <!-- Correct YouTube Embed URL -->
+            <iframe src="https://www.youtube.com/embed/pUIiq9Yzltg" title="Dealing with Grief - Coping Strategies" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="form-container">
+            <h3>Sign Up for the Dealing with Grief Therapy Session</h3>
+            <form id="therapyForm">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Additional Message (optional):</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+
+                <input type="submit" value="Join Grief Therapy Session">
+            </form>
+        </div>
+
+        <div id="confirmationMessage" class="confirmation" style="display: none;">
+            Thank you for joining the Grief Therapy session. A confirmation email has been sent to you.
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('therapyForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the default form submission
+
+            // Get the form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Here you would typically send the data to a server
+            // For this example, we just show a confirmation message
+
+            // Hide the form and show the confirmation message
+            document.querySelector('.form-container').style.display = 'none';
+            document.getElementById('confirmationMessage').style.display = 'block';
+
+            // Optionally, you could log the values (e.g., for debugging)
+            console.log("Name:", name);
+            console.log("Email:", email);
+            console.log("Message:", message);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improving Sleep</title>
+    <style>
+        /* Styling for the button */
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Image container hidden initially */
+        #imageContainer {
+            display: none; /* Initially hidden */
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Styling for the image */
+        #imageContainer img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Improving Sleep</h1>
+    
+    <!-- Button to open the image -->
+    <button class="button" onclick="openImage()">Open Sleep Image</button>
+
+    <!-- Image container -->
+    <div id="imageContainer">
+        <img src="https://pbs.twimg.com/media/GOW1YxcWgAEjsYz.jpg:large" alt="Improving Sleep Image">
+    </div>
+
+    <script>
+        // Function to open the image
+        function openImage() {
+            // Display the image container
+            document.getElementById("imageContainer").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

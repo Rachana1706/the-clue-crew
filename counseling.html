@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling | Mental Health Support</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doctor Counseling Session</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            .form-section {
+                margin-bottom: 20px;
+            }
+            label {
+                font-weight: bold;
+            }
+            select, input {
+                margin-top: 5px;
+                margin-bottom: 10px;
+                padding: 5px;
+                width: 100%;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Login and Request a Counseling Session</h1>
+        
+        <div class="form-section">
+            <label for="doctor-list">Suggested Doctors:</label>
+            <select id="doctor-list" onchange="showAvailability()">
+                <option value="" disabled selected>Select a doctor</option>
+                <option value="Dr. Smith">Dr. Smith</option>
+                <option value="Dr. Johnson">Dr. Johnson</option>
+                <option value="Dr. Patel">Dr. Patel</option>
+                <option value="Dr. Yashpal shetty">Dr.Yashpal shetty</option>
+            </select>
+        </div>
+    
+        <div class="form-section" id="availability-section" style="display: none;">
+            <label for="available-times">Available Dates and Times:</label>
+            <select id="available-times">
+                <!-- Times will be populated dynamically -->
+            </select>
+        </div>
+    
+        <button onclick="submitRequest()">Request Counseling Session</button>
+    
+        <script>
+            // Doctor availability data
+            const doctorAvailability = {
+                "Dr. Smith": [
+                    { date: "2024-12-11", times: ["10:00 AM", "2:00 PM", "4:00 PM"] },
+                    { date: "2024-12-12", times: ["9:00 AM", "11:00 AM"] }
+                ],
+                "Dr. Johnson": [
+                    { date: "2024-12-11", times: ["9:00 AM", "3:00 PM"] },
+                    { date: "2024-12-13", times: ["1:00 PM", "5:00 PM"] }
+                ],
+                "Dr. Patel": [
+                    { date: "2024-12-12", times: ["8:00 AM", "12:00 PM"] },
+                    { date: "2024-12-14", times: ["10:00 AM", "4:00 PM"] }
+                ],
+                "Dr. Yashpal shetty":[
+                    {date:"2024-12-11",times:["10:00 AM","1:00 PM"]},
+                    { date: "2024-12-14", times: ["4:00 PM", "8:00 PM"] }
+                ]
+            };
+    
+            // Function to show available times based on selected doctor
+            function showAvailability() {
+                const doctor = document.getElementById("doctor-list").value;
+                const availabilitySection = document.getElementById("availability-section");
+                const availableTimes = document.getElementById("available-times");
+    
+                if (doctor) {
+                    // Clear previous options
+                    availableTimes.innerHTML = "";
+    
+                    // Populate with new dates and times
+                    doctorAvailability[doctor].forEach(slot => {
+                        const group = document.createElement("optgroup");
+                        group.label = slot.date;
+    
+                        slot.times.forEach(time => {
+                            const option = document.createElement("option");
+                            option.value = `${slot.date} ${time}`;
+                            option.textContent = `${slot.date} - ${time}`;
+                            group.appendChild(option);
+                        });
+    
+                        availableTimes.appendChild(group);
+                    });
+    
+                    // Show the availability section
+                    availabilitySection.style.display = "block";
+                }
+            }
+    
+            // Function to handle session request
+            function submitRequest() {
+                const doctor = document.getElementById("doctor-list").value;
+                const time = document.getElementById("available-times").value;
+    
+                if (doctor && time) {
+                    alert(`Counseling session requested with ${doctor} on ${time}.`);
+                } else {
+                    alert("Please select a doctor and a time.");
+                }
+            }
+        </script>
+    </body>
+    </html>
+    <!-- Include the footer -->
+    <footer>
+        <p>&copy; 2024 Mental Health Support Platform. All rights reserved.</p>
+        <div>
+            <a href="https://www.termsfeed.com/live/58942fbe-b5f4-4db4-9cde-3ffd03c6b93e">Privacy Policy</a> | <a href="http://www.mentalhealthsupport.com">Terms of Service</a> | <a href="5546846840">Contact Us</a>
+            
+        </div>
+    </footer>
+    
+
+    <script src="js.js"></script>
+</body>
+</html>
